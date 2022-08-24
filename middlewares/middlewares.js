@@ -15,7 +15,7 @@ const middleware = (app) => {
   app.use(router);
   database();
   app.use('*', (req, res) => {
-    res.status(200).send('Server is Running Check API docs');
+    res.status(200).send('Route does not exist, check documentation');
   });
   app.use(errorHandler);
 };
