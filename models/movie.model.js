@@ -8,6 +8,10 @@ const movieSchema = mongoose.Schema({
   title: {
     required: true,
     type: String
+  },
+  cloudinaryId: {
+    required: true,
+    type: String
   }
 }, { timestamps: true });
 
