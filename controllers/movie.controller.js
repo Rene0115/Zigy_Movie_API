@@ -1,16 +1,20 @@
-import mongoose from 'mongoose';
+/* eslint-disable class-methods-use-this */
+import movieService from '../services/movie.services';
 
-const movieSchema = mongoose.Schema({
-  link: {
-    required: true,
-    type: String
-  },
-  title: {
-    required: true,
-    type: String
+class MovieController {
+  async addMovie(req, res) {
+    const movie = await movieService.uploadMovie();
   }
-}, { timestamps: true });
 
-const movieModel = mongoose.model('Movie', movieSchema);
+  async allMovies(req, res) {
+    const movie = await movieService.getMovies();
+  }
 
-export default movieModel;
+  async findMovieById(req, res) {
+    const movie = await movieService.getMovieById(req.params.id);
+  }
+
+  async getMoviesInPage(req, res) {
+    const movie = await movieService.getMovieByPage();
+  }
+}
