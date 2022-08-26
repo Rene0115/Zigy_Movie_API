@@ -4,9 +4,10 @@ import express from 'express';
 import pino from 'pino';
 import middleware from './middlewares/middlewares.js';
 
+console.log(process.env);
 const app = express();
 const logger = pino();
-
+logger.info(process.env);
 middleware(app);
 
 app.listen(process.env.PORT, () => {

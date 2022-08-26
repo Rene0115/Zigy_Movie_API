@@ -1,6 +1,8 @@
+/* eslint-disable import/no-cycle */
 /* eslint-disable import/extensions */
 import express from 'express';
 import userController from '../controllers/user.controller.js';
+import uploader from '../test.js';
 import validateUserSchema from '../validators/user.validator.js';
 import validator from '../validators/validator.js';
 

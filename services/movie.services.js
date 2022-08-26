@@ -19,7 +19,7 @@ class MovieServices {
   }
 
   async uploadMovie() {
-
+  
   }
 }
 
