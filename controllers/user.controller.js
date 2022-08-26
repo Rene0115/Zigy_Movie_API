@@ -59,6 +59,12 @@ class UserController {
 
   async fetchUsers(req, res) {
     const users = await userService.getAllUsers();
+    if (_.isEmpty(users)) {
+      return res.status(200).send({
+        success: true,
+        message: 'No users were found, please create a user'
+      });
+    }
     return res.status(200).send({
       success: true,
       body: users

@@ -1,29 +1,16 @@
 /* eslint-disable import/prefer-default-export */
 import multer from 'multer';
 
-const storage = multer.diskStorage({
-  destination(req, file, cb) {
-    cb(null, 'uploads/');
-  },
-  filename(req, file, cb) {
-    cb(null, file.originalname);
-  }
-});
-
-const fileFilter = (req, file, cb) => {
-  // console.log(file.mimetype)
-
-  const mimes = ['video/mp4', 'video/3gp', 'video/x264', 'video/ts', 'video/x265'];
-
-  if (mimes.includes(file.mimetype)) {
+const store = multer.diskStorage({
+  storage: multer.diskStorage({}),
+  filefilter: (req, file, cb) => {
+    const ext = path.extname(file.originalName);
+    if (ext !== 'mp4' || ext !== '.mkv') {
+      cb(new Error('File type is not supported'), false);
+    }
     cb(null, true);
-  } else {
-    cb(new Error(`wrong file type ${file.mimetype}`));
-    cb(null, false);
   }
-};
 
-export const upload = multer({
-  fileFilter,
-  storage
 });
+
+export default store;
