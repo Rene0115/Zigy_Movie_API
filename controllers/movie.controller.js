@@ -2,20 +2,22 @@
 /* eslint-disable import/extensions */
 /* eslint-disable class-methods-use-this */
 import _ from 'lodash';
+import { v2 as cloudinary } from 'cloudinary';
 import movieService from '../services/movie.services.js';
+import logger from '../app.js';
 
 class MovieController {
   async addMovie(req, res) {
     const movie = await movieService.uploadMovie();
     if (!movie) {
-      return res.status(404).send({
+      return res.status(400).send({
         success: false,
-        message: 'something went wrong'
+        message: 'Upload failed check error message'
       });
     }
     return res.status(200).send({
       success: true,
-      message: 'movie uploaded successfully'
+      body: movie
     });
   }
 

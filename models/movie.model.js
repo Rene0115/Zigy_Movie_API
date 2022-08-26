@@ -1,11 +1,11 @@
 import mongoose from 'mongoose';
 
 const movieSchema = mongoose.Schema({
-  link: {
+  url: {
     required: true,
     type: String
   },
-  title: {
+  name: {
     required: true,
     type: String
   },
