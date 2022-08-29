@@ -34,19 +34,20 @@ class MovieServices {
           logger.error(err);
           return res.status(500).send(err);
         }
+        console.log(result);
         const model = new MovieModel({
           url: result.url,
           name: req.file.originalname,
-          cloudinary_id: result.public_id
+          cloudinary_id: result.secure_url
         });
         model.save((error, value) => {
           if (error) {
             logger.error(error);
             return res.status(500).send(error);
           }
+          console.log(value);
           return res.status(200).send(value);
         });
-        return { result, movie };
       }
     );
   }

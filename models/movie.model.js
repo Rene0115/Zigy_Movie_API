@@ -9,7 +9,7 @@ const movieSchema = mongoose.Schema({
     required: true,
     type: String
   },
-  cloudinaryId: {
+  cloudinary_id: {
     required: true,
     type: String
   }
