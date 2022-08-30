@@ -7,7 +7,8 @@ import logger from '../app.js';
 
 class MovieServices {
   async getMovies() {
-
+    const allMovies = await MovieModel.find();
+    return allMovies;
   }
 
   async saveMovie() {
@@ -22,34 +23,21 @@ class MovieServices {
 
   }
 
-  async uploadMovie(req, res) {
-    const movie = await cloudinary.uploader.upload(
-      req.file.path,
-      {
-        resource_type: 'video',
-        folder: 'video'
-      },
-      (err, result) => {
-        if (err) {
-          logger.error(err);
-          return res.status(500).send(err);
-        }
-        console.log(result);
-        const model = new MovieModel({
-          url: result.url,
-          name: req.file.originalname,
-          cloudinary_id: result.secure_url
-        });
-        model.save((error, value) => {
-          if (error) {
-            logger.error(error);
-            return res.status(500).send(error);
-          }
-          console.log(value);
-          return res.status(200).send(value);
-        });
-      }
-    );
+  async uploadMovie({ file }) {
+    const response = await cloudinary.uploader.upload(file.path, {
+      resource_type: 'video',
+      folder: 'video'
+    });
+
+    const movie = new MovieModel({
+      url: response.url,
+      name: file.originalname,
+      cloudinary_id: response.secure_url
+    });
+
+    await movie.save();
+
+    return movie;
   }
 }
 

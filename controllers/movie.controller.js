@@ -8,7 +8,18 @@ import logger from '../app.js';
 
 class MovieController {
   async addMovie(req, res) {
-    const movies = await movieService.uploadMovie(req, res);
+    if (!('file' in req)) {
+      return res.status(400).send({
+        success: false,
+        message: 'Please attached a file'
+      });
+    }
+
+    const newMovieData = {
+      file: req.file
+    };
+
+    const movies = await movieService.uploadMovie(newMovieData);
     if (!movies) {
       return res.status(400).send({
         success: false,

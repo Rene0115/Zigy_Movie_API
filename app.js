@@ -1,5 +1,6 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable import/extensions */
+import 'express-async-errors';
 import express from 'express';
 import pino from 'pino';
 import middleware from './middlewares/middlewares.js';
