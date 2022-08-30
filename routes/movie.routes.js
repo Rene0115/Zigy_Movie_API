@@ -8,5 +8,6 @@ const movieRouter = express.Router();
 
 movieRouter.post('/uploadVideo', store.single('file'), movieController.addMovie);
 movieRouter.get('/', movieController.allMovies);
+movieRouter.get('/:id', movieController.allMovies);
 
 export default movieRouter;

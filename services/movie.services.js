@@ -12,7 +12,7 @@ class MovieServices {
   }
 
   async getMovieById(id) {
-    const movie = await MovieModel.findById(id);
+    const movie = await MovieModel.findById({ _id: id });
     return movie;
   }
 

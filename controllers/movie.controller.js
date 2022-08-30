@@ -33,6 +33,21 @@ class MovieController {
   }
 
   async allMovies(req, res) {
+    const { id } = req.query;
+    if (id) {
+      const movie = await movieService.getMovieById(id);
+      if (!movie) {
+        return res.status(400).send({
+          success: false,
+          message: 'id does not exist in the database'
+        });
+      }
+
+      return res.status(200).send({
+        success: true,
+        body: movie
+      });
+    }
     const movie = await movieService.getMovies();
     if (_.isEmpty(movie)) {
       return res.status(200).send({
@@ -44,16 +59,6 @@ class MovieController {
       success: true,
       data: movie
     });
-  }
-
-  async findMovieById(req, res) {
-    const movie = await movieService.getMovieById(req.query.id);
-    if (_.isEmpty(movie)) {
-      return res.status(200).send({
-        success: true,
-        message: 'no movie with this is exists in the database'
-      });
-    }
   }
 
   async getMoviesInPage(req, res) {
