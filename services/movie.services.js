@@ -7,7 +7,7 @@ import logger from '../app.js';
 
 class MovieServices {
   async getMovies() {
-    const allMovies = await MovieModel.find();
+    const allMovies = await new MovieModel.find();
     return allMovies;
   }
 
