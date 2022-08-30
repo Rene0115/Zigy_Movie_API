@@ -7,16 +7,13 @@ import logger from '../app.js';
 
 class MovieServices {
   async getMovies() {
-    const allMovies = await new MovieModel.find();
+    const allMovies = await MovieModel.find();
     return allMovies;
   }
 
-  async saveMovie() {
-
-  }
-
-  async getMovieById() {
-
+  async getMovieById(id) {
+    const movie = await MovieModel.findById(id);
+    return movie;
   }
 
   async getMovieByPage() {

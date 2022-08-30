@@ -34,10 +34,26 @@ class MovieController {
 
   async allMovies(req, res) {
     const movie = await movieService.getMovies();
+    if (_.isEmpty(movie)) {
+      return res.status(200).send({
+        success: true,
+        message: 'no movies exist in the database'
+      });
+    }
+    return res.status(200).send({
+      success: true,
+      data: movie
+    });
   }
 
   async findMovieById(req, res) {
-    const movie = await movieService.getMovieById(req.params.id);
+    const movie = await movieService.getMovieById(req.query.id);
+    if (_.isEmpty(movie)) {
+      return res.status(200).send({
+        success: true,
+        message: 'no movie with this is exists in the database'
+      });
+    }
   }
 
   async getMoviesInPage(req, res) {
