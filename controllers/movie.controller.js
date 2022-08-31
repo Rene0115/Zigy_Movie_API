@@ -2,9 +2,8 @@
 /* eslint-disable import/extensions */
 /* eslint-disable class-methods-use-this */
 import _ from 'lodash';
-import { v2 as cloudinary } from 'cloudinary';
+import paginate from 'jw-paginate';
 import movieService from '../services/movie.services.js';
-import logger from '../app.js';
 
 class MovieController {
   async addMovie(req, res) {

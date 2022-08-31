@@ -3,7 +3,6 @@
 /* eslint-disable class-methods-use-this */
 import { v2 as cloudinary } from 'cloudinary';
 import MovieModel from '../models/movie.model.js';
-import logger from '../app.js';
 
 class MovieServices {
   async getMovies() {
