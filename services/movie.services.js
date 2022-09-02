@@ -16,7 +16,7 @@ class MovieServices {
   }
 
   async getMovieByPage(data) {
-    const movie = await MovieModel.paginate({}, { page: data.page, limit: data.limit });
+    const movie = await MovieModel.paginate({}, { page: data.page, limit: data.size });
     return movie;
   }
 

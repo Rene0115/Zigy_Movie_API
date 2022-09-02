@@ -60,7 +60,7 @@ class MovieController {
   }
 
   async paginated(req, res) {
-    if (!(req.query?.page && req.query?.limit)) {
+    if (!(req.query?.page && req.query?.size)) {
       const movies = await movieService.getMovies();
       if (!movies) {
         return res.status(400).send({
@@ -70,8 +70,8 @@ class MovieController {
       }
     }
     const page = req.query?.page;
-    const limit = req.query?.limit;
-    const data = { page, limit };
+    const size = req.query?.size;
+    const data = { page, size };
     const movie = await movieService.getMovieByPage(data);
     if (!movie) {
       return res.status(400).send({
