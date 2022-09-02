@@ -6,8 +6,8 @@ import MovieModel from '../models/movie.model.js';
 
 class MovieServices {
   async getMovies() {
-    const allMovies = await MovieModel.find();
-    return allMovies;
+    const movies = await MovieModel.find({});
+    return movies;
   }
 
   async getMovieById(id) {
@@ -15,8 +15,9 @@ class MovieServices {
     return movie;
   }
 
-  async getMovieByPage() {
-
+  async getMovieByPage(data) {
+    const movie = await MovieModel.paginate({}, { page: data.page, limit: data.limit });
+    return movie;
   }
 
   async uploadMovie({ file }) {

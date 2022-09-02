@@ -2,7 +2,6 @@
 /* eslint-disable import/extensions */
 /* eslint-disable class-methods-use-this */
 import _ from 'lodash';
-import paginate from 'jw-paginate';
 import movieService from '../services/movie.services.js';
 
 class MovieController {
@@ -10,7 +9,7 @@ class MovieController {
     if (!('file' in req)) {
       return res.status(400).send({
         success: false,
-        message: 'Please attached a file'
+        message: 'Please attach a file'
       });
     }
 
@@ -60,8 +59,31 @@ class MovieController {
     });
   }
 
-  async getMoviesInPage(req, res) {
-    const movie = await movieService.getMovieByPage();
+  async paginated(req, res) {
+    if (!(req.query?.page && req.query?.limit)) {
+      const movies = await movieService.getMovies();
+      if (!movies) {
+        return res.status(400).send({
+          success: false,
+          message: 'no movies exist in the database'
+        });
+      }
+    }
+    const page = req.query?.page;
+    const limit = req.query?.limit;
+    const data = { page, limit };
+    const movie = await movieService.getMovieByPage(data);
+    if (!movie) {
+      return res.status(400).send({
+        success: false,
+        message: 'no movie exist in the database'
+      });
+    }
+    return res.status(200).send({
+      success: true,
+      data: movie
+    });
   }
 }
+
 export default new MovieController();
