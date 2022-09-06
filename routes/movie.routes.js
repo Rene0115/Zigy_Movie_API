@@ -9,4 +9,6 @@ const movieRouter = express.Router();
 movieRouter.post('/uploadVideo', store.single('file'), movieController.addMovie);
 movieRouter.get('/:id', movieController.allMovies);
 movieRouter.get('/', movieController.paginated);
+// movieRouter.get('/', movieController.)
+movieRouter.delete('/delete/:id', movieController.delete);
 export default movieRouter;

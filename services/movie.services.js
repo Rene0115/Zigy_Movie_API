@@ -36,6 +36,11 @@ class MovieServices {
 
     return movie;
   }
+
+  async deleteMovie(id) {
+    const movie = await MovieModel.findByIdAndDelete(id);
+    return movie;
+  }
 }
 
 export default new MovieServices();

@@ -31,7 +31,7 @@ class MovieController {
   }
 
   async allMovies(req, res) {
-    const { id } = req.query;
+    const { id } = req.params;
     if (id) {
       const movie = await movieService.getMovieById(id);
       if (!movie) {
@@ -72,6 +72,11 @@ class MovieController {
     const page = req.query?.page;
     const size = req.query?.size;
     const data = { page, size };
+    if (!(page && size)) {
+      const movies = await movieService.getMovies();
+      return movies;
+    }
+
     const movie = await movieService.getMovieByPage(data);
     if (!movie) {
       return res.status(400).send({
@@ -82,6 +87,20 @@ class MovieController {
     return res.status(200).send({
       success: true,
       data: movie
+    });
+  }
+
+  async delete(req, res) {
+    const movie = await movieService.deleteMovie(req.params.id);
+    if (!movie) {
+      return res.status(400).send({
+        success: false,
+        message: 'Unable to delete movie'
+      });
+    }
+    return res.status(200).send({
+      success: true,
+      message: 'Movie deleted successfully'
     });
   }
 }
