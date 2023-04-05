@@ -1,8 +1,8 @@
-import 'express-async-errors';
-import express from 'express';
-import pino from 'pino';
-import middleware from './middlewares/middlewares.js';
-import dotenv from 'dotenv';
+import "express-async-errors";
+import express from "express";
+import pino from "pino";
+import middleware from "./middlewares/middlewares.js";
+import dotenv from "dotenv";
 dotenv.config();
 
 const app = express();
@@ -12,7 +12,7 @@ middleware(app);
 
 app.listen(process.env.PORT, () => {
   let port = process.env.PORT;
-  if (port == null || port === '' || port === undefined) {
+  if (port == null || port === "" || port === undefined) {
     port = 8000;
   }
 
