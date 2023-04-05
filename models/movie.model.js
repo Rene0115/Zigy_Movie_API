@@ -1,22 +1,28 @@
 import mongoose from 'mongoose';
-import mongoosePaginate from 'mongoose-paginate-v2';
 
 const movieSchema = mongoose.Schema({
-  url: {
+  streamUrl: {
     required: true,
-    type: String
+    type: String,
+    default: "empty"
   },
   name: {
     required: true,
-    type: String
+    type: String,
+    default: "empty"
   },
   cloudinary_id: {
     required: true,
-    type: String
+    type: String,
+    default: "empty"
+  },
+  download_url: {
+    required: true,
+    type: String,
+    default: "empty"
   }
-}, { timestamps: true });
+}, { timestamps: true , versionKey: false});
 
-movieSchema.plugin(mongoosePaginate);
 
 const movieModel = mongoose.model('Movie', movieSchema);
 

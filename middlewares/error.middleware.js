@@ -1,13 +1,9 @@
-/* eslint-disable no-unused-vars */
-import pino from 'pino';
+import logger from "../app.js";
 
-const logger = pino();
-
-const errorHandler = (err, req, res, next) => {
-//   if (process.env.NODE_ENV !== 'production') {
-  logger.error(err);
-  //   }
-  return res.status(500).send({ success: false, message: err.message });
-};
+const errorHandler = (err, req, res, next) =>
+{
+logger.error(err.message);
+return res.status(500).send({ status: false, message: `${err.message}` });
+}
 
 export default errorHandler;
