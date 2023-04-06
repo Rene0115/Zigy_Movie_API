@@ -2,7 +2,6 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import router from "../routes/index.routes.js";
-import database from "../config/db.config.js";
 import errorHandler from "./error.middleware.js";
 
 const middleware = (app) => {
@@ -11,7 +10,6 @@ const middleware = (app) => {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(cors());
   app.use(router);
-  database();
   app.use("*", (req, res) => {
     res.status(200).send("server is running, check documentation");
   });

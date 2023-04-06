@@ -9,14 +9,14 @@ const cloudinary = _cloudinary.v2;
 cloudinary.config({
   cloud_name: CLOUD_NAME,
   api_key: API_KEY,
-  api_secret: API_SECRET,
+  api_secret: API_SECRET
 });
 
 export async function uploadVideo(file) {
   try {
     const response = await cloudinary.uploader.upload(file, {
       resource_type: "video",
-      folder: "zigy/videos",
+      folder: "zigy/videos"
     });
 
     return response;
@@ -29,8 +29,7 @@ export async function streamVideo(fileId) {
   try {
     const streamingUrl = cloudinary.url(fileId, {
       resource_type: "video",
-      streaming_profile: "full_hd",
-      secure: true,
+      secure: true
     });
 
     return streamingUrl;
@@ -43,7 +42,7 @@ export async function downloadVideo(fileId) {
   try {
     const downloadUrl = cloudinary.url(fileId, {
       resource_type: "video",
-      secure: true,
+      secure: true
     });
 
     return downloadUrl;
@@ -54,5 +53,5 @@ export async function downloadVideo(fileId) {
 export default {
   uploadVideo,
   downloadVideo,
-  streamVideo,
+  streamVideo
 };

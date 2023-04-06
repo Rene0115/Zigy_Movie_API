@@ -12,8 +12,8 @@ const store = multer({
         cb(new Error("File type is not supported"), false);
       }
       cb(null, true);
-    },
-  }),
+    }
+  })
 });
 
 export default store;

@@ -3,7 +3,7 @@ import movieService from "../services/movie.services.js";
 import {
   uploadVideo,
   streamVideo,
-  downloadVideo,
+  downloadVideo
 } from "../config/cloudinary.config.js";
 
 class MovieController {
@@ -11,7 +11,7 @@ class MovieController {
     if (!("file" in req)) {
       return res.status(400).send({
         success: false,
-        message: "Please attach a file",
+        message: "Please attach a file"
       });
     }
 
@@ -23,14 +23,14 @@ class MovieController {
     const data = {
       stream_url: streamingUrl,
       download_url: downloadUrl,
-      name: upload.original_filename,
+      name: upload.original_filename
     };
 
     const movie = await movieService.create(data);
 
     return res.status(200).send({
       success: true,
-      data: movie,
+      data: movie
     });
   }
 
@@ -39,15 +39,14 @@ class MovieController {
     if (_.isEmpty(movies)) {
       return res.status(200).send({
         success: true,
-        message: "No movies were found in the database",
+        message: "No movies were found in the database"
       });
     }
     return res.status(200).send({
       success: true,
-      data: movies,
+      data: movies
     });
   }
-
 }
 
 export default new MovieController();

@@ -5,18 +5,18 @@ const movieSchema = mongoose.Schema(
     stream_url: {
       required: true,
       type: String,
-      default: "empty",
+      default: "empty"
     },
     name: {
       required: true,
       type: String,
-      default: "empty",
+      default: "empty"
     },
     download_url: {
       required: true,
       type: String,
-      default: "empty",
-    },
+      default: "empty"
+    }
   },
   { timestamps: true, versionKey: false }
 );
