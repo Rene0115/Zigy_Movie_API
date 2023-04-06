@@ -23,7 +23,8 @@ class MovieController {
     const data = {
       stream_url: streamingUrl,
       download_url: downloadUrl,
-      name: upload.original_filename
+      name: upload.original_filename,
+      cloudinary_url: upload.url
     };
 
     const movie = await movieService.create(data);
@@ -34,19 +35,6 @@ class MovieController {
     });
   }
 
-  async allMovies(req, res) {
-    const movies = await movieService.getMovies();
-    if (_.isEmpty(movies)) {
-      return res.status(200).send({
-        success: true,
-        message: "No movies were found in the database"
-      });
-    }
-    return res.status(200).send({
-      success: true,
-      data: movies
-    });
-  }
 }
 
 export default new MovieController();

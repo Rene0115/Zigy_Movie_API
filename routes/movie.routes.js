@@ -9,5 +9,5 @@ movieRouter.post(
   store.single("video"),
   movieController.addMovie
 );
-movieRouter.get("/", movieController.allMovies);
+
 export default movieRouter;

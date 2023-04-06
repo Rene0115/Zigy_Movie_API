@@ -6,10 +6,6 @@ class MovieServices {
     const movie = await movieModel.create(data);
     return movie;
   }
-  async getMovies() {
-    const movies = await MovieModel.find({});
-    return movies;
-  }
 }
 
 export default new MovieServices();
