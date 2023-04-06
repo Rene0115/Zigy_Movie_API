@@ -1,13 +1,13 @@
 import _ from "lodash";
-import movieService from "../services/movie.services.js";
+import videoService from "../services/video.services.js";
 import {
   uploadVideo,
   streamVideo,
   downloadVideo
 } from "../config/cloudinary.config.js";
 
-class MovieController {
-  async addMovie(req, res) {
+class VideoController {
+  async addvideo(req, res) {
     if (!("file" in req)) {
       return res.status(400).send({
         success: false,
@@ -27,14 +27,14 @@ class MovieController {
       cloudinary_url: upload.url
     };
 
-    const movie = await movieService.create(data);
+    const video = await videoService.create(data);
 
     return res.status(200).send({
       success: true,
-      data: movie
+      data: video
     });
   }
 
 }
 
-export default new MovieController();
+export default new VideoController();

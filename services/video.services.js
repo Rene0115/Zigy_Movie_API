@@ -1,5 +1,5 @@
-import movieModel from "../models/movie.model.js";
-import MovieModel from "../models/movie.model.js";
+import movieModel from "../models/video.model.js";
+import MovieModel from "../models/video.model.js";
 
 class MovieServices {
   async create(data) {
